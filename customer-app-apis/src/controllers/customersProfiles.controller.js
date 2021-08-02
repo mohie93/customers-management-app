@@ -31,8 +31,8 @@ exports.destroy = async (req, res) => {
 };
 
 exports.searchBy = async (req, res) => {
-  const { attribute, key } = req.params;
-  const records = await CustomerProfile.getBy(attribute, key);
+  const { needle } = req.params;
+  const records = await CustomerProfile.searchBy(needle);
   return { statusCode: 200, data: records };
 };
 

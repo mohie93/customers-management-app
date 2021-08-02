@@ -1,0 +1,76 @@
+<div class="row mt-4 mb-2">
+  <button
+    type="button"
+    class="btn btn-primary col-md-2"
+    data-bs-toggle="modal"
+    data-bs-target="#createItemModal"
+  >
+    Add new customer
+  </button>
+</div>
+
+<!-- Create Item Modal -->
+<div
+  class="modal fade"
+  id="createItemModal"
+  tabindex="-1"
+  aria-labelledby="createItemModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createItemModalLabel">New Customer</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            [(ngModel)]="customer.firstName"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            [(ngModel)]="customer.lastName"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            [(ngModel)]="customer.email"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          (click)="saveCustomer()"
+          class="btn btn-primary"
+          data-dismiss="modal"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Create Modal Completed-->

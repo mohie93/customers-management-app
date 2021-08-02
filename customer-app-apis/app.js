@@ -15,6 +15,6 @@ const port = process.env.PORT || 5000;
 app.get('/', (_, res) => res.status(200).json({ message: 'OK', version: require('./package.json').version }));
 
 // routes
-app.use('/api/v1/customers', require('./src/routes/customerProfile.route'));
+app.use('/api/customers', require('./src/routes/customerProfile.route'));
 
 app.listen(port, () => console.log(`customers backend app listening on port ${port}!`));

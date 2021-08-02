@@ -8,7 +8,7 @@ router.get('/:id', validator.validateGetByIdRequest, apiHandler.handle(customerP
 router.post('/', validator.validateCreateRequest, apiHandler.handle(customerProfileController.create));
 router.patch('/:id', validator.validateUpdateRequest, apiHandler.handle(customerProfileController.update));
 router.delete('/:id', validator.validateDestroyRequest, apiHandler.handle(customerProfileController.destroy));
-router.get('/search/:attribute/:key', validator.validateSearchByRequest, apiHandler.handle(customerProfileController.searchBy));
+router.get('/search/:needle', validator.validateSearchByRequest, apiHandler.handle(customerProfileController.searchBy));
 router.get('/sort/:attribute/:direction', validator.validateSortByRequest, apiHandler.handle(customerProfileController.sortBy));
 
 module.exports = router;

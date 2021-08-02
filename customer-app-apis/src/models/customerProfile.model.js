@@ -9,13 +9,13 @@ class CustomerProfile {
   constructor(payload) {
     this.id = uuidv4();
     this.email = payload.email;
-    this.first_name = payload.first_name;
-    this.last_name = payload.last_name;
+    this.firstName = payload.firstName;
+    this.lastName = payload.lastName;
   }
 
   async save() {
-    const { id, email, first_name, last_name } = this;
-    return await DB(table).insert({ id, email, first_name, last_name });
+    const { id, email, firstName, lastName } = this;
+    return await DB(table).insert({ id, email, firstName, lastName });
   }
 
   static async getAll() {
@@ -26,8 +26,12 @@ class CustomerProfile {
     return DB(table).where({ id }).select('*').first();
   }
 
-  static async getBy(attribute, key) {
-    return DB(table).where(attribute, 'LIKE', `%${key}%`).select('*');
+  static async searchBy(needle) {
+    return DB(table)
+      .where('email', 'LIKE', `%${needle}%`)
+      .orWhere('firstName', 'LIKE', `%${needle}%`)
+      .orWhere('lastName', 'LIKE', `%${needle}%`)
+      .select('*');
   }
 
   static async orderBy(attribute, direction) {
