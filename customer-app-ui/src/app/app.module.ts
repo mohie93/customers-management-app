@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -11,7 +11,16 @@ import { CustomersDashboardComponent } from './components/customers-dashboard/cu
 import { CustomersCreateComponent } from './components/customers-create/customers-create.component';
 import { CustomersListComponent } from './components/customers-list/customers-list.component';
 import { CustomersUpdateComponent } from './components/customers-update/customers-update.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+const appRoutes: Routes = [
+  { path: '', pathMatch: 'prefix', redirectTo: 'customers' },
+  { path: 'customers', component: CustomersDashboardComponent },
+  {
+    path: 'customers/:id/update',
+    component: CustomersUpdateComponent,
+  },
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +32,13 @@ import { CustomersUpdateComponent } from './components/customers-update/customer
     CustomersListComponent,
     CustomersUpdateComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes, { enableTracing: false }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

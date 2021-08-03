@@ -2,7 +2,7 @@
   <div class="text-center" *ngIf="!hasCustomers">
     <h1>No Records To Show</h1>
   </div>
-  <table *ngIf="hasCustomers" class="table table-striped">
+  <table *ngIf="hasCustomers" class="table table-hover">
     <thead>
       <tr>
         <th>First Name</th>
@@ -31,10 +31,17 @@
           {{ customer.updatedAt }}
         </td>
         <td>
-          <app-customers-update [id]="customer.id"></app-customers-update>
+          <a
+            class="btn btn-outline-success"
+            routerLink="/customers/{{ customer.id }}/update"
+            >Edit</a
+          >
         </td>
         <td>
-          <button class="btn btn-danger" (click)="deleteCustomer(customer.id)">
+          <button
+            class="btn btn-outline-danger"
+            (click)="deleteCustomer(customer.id)"
+          >
             Delete
           </button>
         </td>

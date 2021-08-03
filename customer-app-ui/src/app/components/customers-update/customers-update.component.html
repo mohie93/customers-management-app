@@ -1,72 +1,110 @@
-<button
-  type="button"
-  class="btn btn-warning"
-  data-bs-toggle="modal"
-  data-bs-target="#updateModal"
->
-  Update
-</button>
-
-<!-- Update Item Modal -->
-<div
-  class="modal fade"
-  id="updateModal"
-  tabindex="-1"
-  aria-labelledby="updateItemModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateItemModalLabel">Selected Customer</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <label for="firstName" class="form-label">First Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="{{ customer.id + '_firstName' }}"
-            [(ngModel)]="customer.firstName"
-            value="customer.firstName"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="lastName" class="form-label">Last Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="{{ customer.id + '_lastName' }}"
-            [(ngModel)]="customer.lastName"
-            value="customer.lastName"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input
-            type="text"
-            class="form-control"
-            id="{{ customer.id + '_email' }}"
-            [(ngModel)]="customer.email"
-            value="customer.email"
-          />
+<div class="mt-2 p-2">
+  <a class="btn btn-outline-dark" routerLink="/customers"> << Back </a>
+</div>
+<div class="mt-2 p-2 m-auto">
+  <h1 class="text-center">Update customer</h1>
+  <div class="m-auto col-md-6 mt-4">
+    <form [formGroup]="updateCustomerForm" (ngSubmit)="handleFormSubmission()">
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          formControlName="firstName"
+          class="form-control"
+          id="firstName"
+          [(ngModel)]="customer.firstName"
+          required
+        />
+        <div
+          *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)"
+        >
+          <span class="text-danger" *ngIf="firstName.errors?.required">
+            *First Name is required
+          </span>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">
-          Save changes
-        </button>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          formControlName="lastName"
+          type="text"
+          class="form-control"
+          id="lastName"
+          [(ngModel)]="customer.lastName"
+          required
+        />
+        <div *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+          <span class="text-danger" *ngIf="lastName.errors?.required">
+            *Last Name is required
+          </span>
+        </div>
       </div>
-    </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          formControlName="email"
+          type="text"
+          class="form-control"
+          [(ngModel)]="customer.email"
+          id="email"
+          required
+        />
+        <div *ngIf="email.invalid && (email.touched || email.dirty)">
+          <span class="text-danger" *ngIf="email.errors?.required">
+            *Email is required
+          </span>
+          <span class="text-danger" *ngIf="email.errors?.email">
+            *Email is invalid
+          </span>
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="updateCustomerForm.invalid"
+        class="col-md-12 btn btn-outline-success"
+      >
+        Save changes
+      </button>
+    </form>
   </div>
 </div>
-<!-- Create Modal Completed-->
+
+<!-- <div class="m-auto col-md-6 mt-4">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        [(ngModel)]="customer.firstName"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        [(ngModel)]="customer.lastName"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        [(ngModel)]="customer.email"
+        required
+      />
+    </div>
+    <button
+      type="button"
+      class="col-md-12 btn btn-outline-success"
+      (click)="update()"
+    >
+      Save changes
+    </button>
+  </div> -->
