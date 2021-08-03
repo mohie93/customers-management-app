@@ -22,7 +22,6 @@ export class CustomersListComponent implements OnInit {
       (data) => {
         this.customers = data;
         this.hasCustomers = this.customers.length > 0;
-        console.log(this.customers);
       },
       (error) => {
         console.log(error);
@@ -33,7 +32,6 @@ export class CustomersListComponent implements OnInit {
   deleteCustomer(id: any) {
     this.customerService.delete(id).subscribe(
       (data) => {
-        console.log(data);
         this.retrieveCustomers();
       },
       (error) => {

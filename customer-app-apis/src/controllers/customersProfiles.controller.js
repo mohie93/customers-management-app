@@ -8,7 +8,6 @@ exports.index = async (req, res) => {
 exports.show = async (req, res) => {
   const { id } = req.params;
   const record = await CustomerProfile.getById(id);
-  console.log(record);
   return record ? { statusCode: 200, data: record } : { statusCode: 404, data: {} };
 };
 

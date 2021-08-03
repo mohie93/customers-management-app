@@ -33,7 +33,6 @@ export class CustomersCreateComponent implements OnInit {
 
   handleFormSubmission() {
     if (this.createCustomerForm.valid) {
-      console.log(this.createCustomerForm.value);
       const data = {
         firstName: this.createCustomerForm.value.firstName,
         lastName: this.createCustomerForm.value.lastName,
@@ -41,7 +40,6 @@ export class CustomersCreateComponent implements OnInit {
       };
       this.customersService.create(data).subscribe(
         (response) => {
-          console.log(response);
           this.createCustomerForm.reset();
           window.location.reload();
         },

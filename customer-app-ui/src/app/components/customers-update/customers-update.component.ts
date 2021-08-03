@@ -64,7 +64,6 @@ export class CustomersUpdateComponent implements OnInit {
       (response) => {
         const { id, firstName, lastName, email } = response;
         this.customer = { id, firstName, lastName, email };
-        console.log(this.customer);
       },
       (error) => {
         console.log(error);

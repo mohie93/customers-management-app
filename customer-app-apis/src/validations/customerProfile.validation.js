@@ -96,11 +96,12 @@ exports.validateUpdateRequest = async (req, res, next) => {
     const { id } = req.params;
     if (!id) res.status(400).json({ message: 'Id param is missing' });
     const schema = Joi.object({
+      id: Joi.string().required(),
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       email: Joi.string().email().required(),
     });
-    await schema.validateAsync(req.body);
+    await schema.validateAsync({ ...req.body, id });
     next();
   } catch (errors) {
     const errorsMessages = errors.details.map((error) => error.message);
