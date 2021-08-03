@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "start": "node app.js",
+    "start": "node app.js && knex migrate:up",
     "migrate:up": "knex migrate:up",
     "migrate:down": "knex migrate:down",
     "test": "jest --runInBand --detectOpenHandles --passWithNoTests"

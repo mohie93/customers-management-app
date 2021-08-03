@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: customers_profiles_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+
+    ports:
+      - "3306:3306"
+
+  customers-api:
+    build: ./customer-app-apis
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - DB_HOST=db
+      - DB_USER_NAME=user
+      - DB_USER_PASSWORD=user
+      - DB_NAME=customers_profiles_db
+      - DB_PORT=3306
+      - DB_ENGINE=mysql2
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+  customers-ui:
+    build: ./customer-app-ui
+    ports:
+      - "4200:4200"
