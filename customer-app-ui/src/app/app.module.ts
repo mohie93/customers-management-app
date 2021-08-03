@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ButtonComponent } from './components/button/button.component';
 import { CustomersDashboardComponent } from './components/customers-dashboard/customers-dashboard.component';
 import { CustomersCreateComponent } from './components/customers-create/customers-create.component';
 import { CustomersListComponent } from './components/customers-list/customers-list.component';
@@ -26,7 +25,6 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ButtonComponent,
     CustomersDashboardComponent,
     CustomersCreateComponent,
     CustomersListComponent,
