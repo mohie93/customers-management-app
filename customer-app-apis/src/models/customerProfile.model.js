@@ -13,20 +13,20 @@ class CustomerProfile {
     this.lastName = payload.lastName;
   }
 
-  async save() {
+  save() {
     const { id, email, firstName, lastName } = this;
-    return await DB(table).insert({ id, email, firstName, lastName });
+    return DB(table).insert({ id, email, firstName, lastName });
   }
 
-  static async getAll() {
+  static getAll() {
     return DB(table).select('*');
   }
 
-  static async getById(id) {
+  static getById(id) {
     return DB(table).where({ id }).select('*').first();
   }
 
-  static async searchBy(needle) {
+  static searchBy(needle) {
     return DB(table)
       .where('email', 'LIKE', `%${needle}%`)
       .orWhere('firstName', 'LIKE', `%${needle}%`)
@@ -34,15 +34,15 @@ class CustomerProfile {
       .select('*');
   }
 
-  static async orderBy(attribute, direction) {
+  static orderBy(attribute, direction) {
     return DB(table).orderBy(attribute, direction);
   }
 
-  static async destroy(id) {
+  static destroy(id) {
     return DB(table).where({ id }).del();
   }
 
-  static async update(id, options) {
+  static update(id, options) {
     return DB(table).where({ id }).update(options);
   }
 }
